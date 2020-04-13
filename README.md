@@ -1,6 +1,6 @@
 # MorseCodeTranslator
 
-QWidgets Application written in Qt Creator which translate Morse Code. 
+QWidgets Application written in Qt Creator which translates Morse Code. 
 
 The application provides the following functions:
 * text conversion from and to Morse Code,
