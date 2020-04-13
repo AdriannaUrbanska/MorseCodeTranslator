@@ -23,12 +23,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    tree.cpp \
-    open_save_exit.cpp \
-    code_decode.cpp
+        source/mainwindow.cpp \
+    source/tree.cpp \
+    source/open_save_exit.cpp \
+    source/code_decode.cpp
 
-HEADERS  += mainwindow.h \
-    tree.h
+HEADERS  += include/mainwindow.h \
+    include/tree.h
 
-FORMS    += mainwindow.ui
+FORMS    += forms/mainwindow.ui
