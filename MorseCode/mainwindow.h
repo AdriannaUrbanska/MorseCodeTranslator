@@ -34,7 +34,7 @@ private slots:
 
     void on_Save_clicked();
 
-    void Encode();
+    void Code();
 
     void Decode();
 

@@ -17,5 +17,7 @@ public:
 
     Tree * GetRight();
 
+    char GetLetter();
+
     void Node(char left_letter, char right_letter);
 };

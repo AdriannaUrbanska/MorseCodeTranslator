@@ -4,14 +4,13 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QChar>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
 
     CreateTree();
 }
@@ -23,16 +22,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Change_clicked()
 {
+    QString from = ui->Text_from->toPlainText();
+    QString to = ui->Text_to->toPlainText();
+
     if(ui->Label_from->text() == "Coded")
     {
         ui->Label_from->setText("Decoded");
         ui->Label_to->setText("Coded");
+
+        Code();
     }
     else
     {
         ui->Label_from->setText("Coded");
         ui->Label_to->setText("Decoded");
+
+        Decode();
     }
+
+//    ui->Text_from->setPlainText(to);
+//    ui->Text_to->setPlainText(from);
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -120,28 +129,52 @@ void MainWindow::on_Clear_clicked()
 void MainWindow::on_Text_from_textChanged()
 {
     if(ui->Label_from->text() == "Decoded")
-        Decode();
+        Code();
     else
-        Encode();
+        Decode();
 }
 
-void MainWindow::Encode()
+void MainWindow::Decode()
 {
     QString text_from = ui->Text_from->toPlainText().toUpper();
     QString text_to = "";
-    QString word = "";
     int len = text_from.length();
+    Tree *t = &root;
+    char letter_before = text_from[0].toLatin1();
 
+    for(int i = 0; i < len; i++)
+    {
+        char l = text_from[i].toLatin1();
 
-//    for(int i = 0; i < len; i++)
-//    {
+        if(l == '-')
+        {
+            if(t != nullptr)
+                t = t->GetLeft();
+        }
+        else if (l == '.')
+        {
+            if(t != nullptr)
+                t = t->GetRight();
+        }
+        else if(l == ' ')
+        {
+            if(t != nullptr)
+            {
+                text_to += t->GetLetter();
 
-//    }
+                if(letter_before == ' ' && !text_to.isEmpty())
+                    text_to += " ";
+            }
+            t = &root;
+        }
+
+        letter_before = l;
+    }
 
     ui->Text_to->setPlainText(text_to);
 }
 
-void MainWindow::Decode()
+void MainWindow::Code()
 {
     QString text_from = ui->Text_from->toPlainText().toUpper();
     QString text_to = "";

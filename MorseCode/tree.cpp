@@ -13,10 +13,12 @@ Tree * Tree::GetLeft() {return left;}
 
 Tree * Tree::GetRight() {return right;}
 
+char Tree::GetLetter() {return letter;}
+
 void Tree::Node(char left_letter, char right_letter)
 {
     if(left_letter != '\0')
         left = new Tree(left_letter);
     if(right_letter != '\0')
-        right = new Tree(left_letter);
+        right = new Tree(right_letter);
 }
