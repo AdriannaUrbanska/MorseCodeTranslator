@@ -24,7 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    tree.cpp
+    tree.cpp \
+    open_save_exit.cpp \
+    code_decode.cpp
 
 HEADERS  += mainwindow.h \
     tree.h

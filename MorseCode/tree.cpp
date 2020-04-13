@@ -5,15 +5,11 @@ Tree::Tree(char letter)
 
 Tree::~Tree()
 {
-    delete left;
-    delete right;
+    if(left != nullptr)
+        delete left;
+    if(right != nullptr)
+        delete right;
 }
-
-Tree * Tree::GetLeft() {return left;}
-
-Tree * Tree::GetRight() {return right;}
-
-char Tree::GetLetter() {return letter;}
 
 void Tree::Node(char left_letter, char right_letter)
 {
@@ -22,3 +18,9 @@ void Tree::Node(char left_letter, char right_letter)
     if(right_letter != '\0')
         right = new Tree(right_letter);
 }
+
+Tree * Tree::GetLeft() { return left; }
+
+Tree * Tree::GetRight() { return right; }
+
+char Tree::GetLetter() { return letter; }
